@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: backend-deployment-app
+spec:
+  replicas: {{ .Values.backend.replicas }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend-container
+          image: {{ .Values.backend.image }}
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: backend-configmap
+          volumeMounts:
+            - name: backend-vlm
+              mountPath: /data
+
+      volumes:
+        - name: backend-vlm
+          persistentVolumeClaim:
+            claimName: backend-pvc

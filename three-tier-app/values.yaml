@@ -1,0 +1,19 @@
+namespace: threetierapp
+backend:
+  replicas: 2 
+  image: 192.168.0.120:8085/dockerrepo/backendpr:v1 
+  service:
+    port: 80
+    targetport: 80
+frontend:
+  replicas: 2
+  image: 192.168.0.120:8085/dockerrepo/frontendpr:v1 
+  service:
+    port: 3000
+    targetport: 3000
+database:
+  replicas: 2
+  image: mongo:latest
+  service: 
+    port: 27017
+    targetport: 27017 

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: frontend-configmap
+  namespace: {{ .Values.namespace }}
+
+data:
+  NODE_ENV: development
+  BROWSER: "none"
+  HOST: "0.0.0.0"
+  PUBLIC_URL: /frontend

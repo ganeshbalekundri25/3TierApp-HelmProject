@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: {{ .Values.namespace }}
+  labels: 
+    app: frontend-deployment-app
+spec:
+  replicas: {{ .Values.frontend.replicas }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend-contaier
+          image: {{ .Values.frontend.image }}
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+               name: frontend-configmap
+
