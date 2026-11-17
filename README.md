@@ -92,12 +92,6 @@ server = "http://192.168.0.120:8085"
   capabilities = ["pull", "resolve", "push"]
 ```
 
-```bash
-sudo mkdir -p /var/snap/microk8s/current/args/certs.d/192.168.0.120:8085
-sudo nano /var/snap/microk8s/current/args/certs.d/192.168.0.120:8085/hosts.toml
-# If pods do not recover on their own: microk8s stop && microk8s start
-```
-
 ![hosts.toml configuration](Assets/configuration.png)
 
 ### Result
